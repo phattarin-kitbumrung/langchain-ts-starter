@@ -3,16 +3,18 @@ import { conversationchain } from 'conversation.ts'
 import { prompttemplate } from 'template.ts'
 import { charactertextsplitter, tokentextsplitter } from 'textsplitter.ts'
 import { createdocs, querydocs } from './pinecone.ts'
+import { executeAgents } from './agents.ts'
 
 const app = express()
 const port = 3000
 
 app.listen(port, async () => {       
-    console.log( `server started at http://localhost:${port}`)
-    await conversationchain()
-    await prompttemplate('Bangkok', 'Thailand')
-    await charactertextsplitter()
-    await tokentextsplitter()
-    await createdocs()
-    await querydocs()
+  console.log( `server started at http://localhost:${port}`)
+  await conversationchain()
+  await prompttemplate('Bangkok', 'Thailand')
+  await charactertextsplitter()
+  await tokentextsplitter()
+  await createdocs()
+  await querydocs()
+  await executeAgents()
 })
